@@ -1,6 +1,27 @@
-<h1>Editing Post</h1>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12 col-md-8 col-lg-4 offset-md-2">
+			
 
-<%= render 'form', post: @post %>
+
+			<%= form_for @post, method: 'post', action: 'update' do |f| %>
+					
+			<textarea cols="30" rows="4" maxlength="180" name="post[body]" id="post_body" class="form-control">
+				<%= @post.body %> 
+			</textarea>
+
+			<div class="row">
+			<%= f.submit 'Confirm', class: 'btn btn-primary mt-3 ml-3'  %>
+			</div>
+			<% end %>
+
+
+
+
+
+		</div>
+	</div>
+</div>
 
 <%= link_to 'Show', @post %> |
 <%= link_to 'Back', posts_path %>

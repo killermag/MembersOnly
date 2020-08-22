@@ -1,25 +1,111 @@
-<p id="notice"><%= notice %></p>
+<style>
+	textarea {
+		resize: none;
+	}
 
-<h1>Posts</h1>
+	.myDiv {
+		
+		background-color: #fffafa;
+		word-wrap: break-word;
+		box-shadow: 4px 8px 22px 2px #E4E4E4;
+		border-radius: 6px;
+		min-height: 80px;
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+	.myUser {
+		background-color: #242424;
+		font-family: 'Baloo Tamma 2', cursive;
+		
+	}
 
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+	textarea {
+		font-weight: bold;
+		color: #007BFF;
+		background-color: #434343;
+	}
 
-<br>
+	
 
-<%= link_to 'New Post', new_post_path %>
+
+</style>
+
+<% if @post.errors.any? %>
+    <div id="error_explanation">
+      
+      
+       <% @post.errors.full_messages.each do |message| %>
+         <%= message %> 
+       <% end %>
+      
+    </div>
+	<% end %>
+
+<!-- 
+<% if @post.errors.full_messages.any? %>
+  <% @post.errors.full_messages.each do |error_message| %>
+    <%= error_message %> <br />
+  <% end %>
+<% end %>	
+--> 
+
+<% if user_signed_in? %> 
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 col-md-8 col-lg-4 offset-md-2 blue-links">
+				Say Something funny
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12 col-md-8 col-lg-6 offset-md-2 blue-links jumbotron">
+				
+					<%= form_for @post do |f| %>
+					
+						<textarea cols="30" rows="4" maxlength="180" name="post[body]" id="post_body" class="form-control"></textarea>
+
+						<div class="row">
+						<%= f.submit 'Create', class: 'btn btn-primary mt-3 ml-3'  %>
+						</div>
+					<% end %>
+
+			</div>
+		</div>
+	</div>
+<% end %> <br \> <br \>
+
+<div class="container">
+	
+	<div class="row">
+		
+		<div class="col-sm-12 col-md-8 col-lg-6 offset-md-2 text-white">
+			<% if @posts %> 
+				<% @posts.each do |post| %> 
+					<% if user_signed_in? %> 
+						<div class="myUser">
+							@<%= post.user.username %> 
+						</div>
+						
+					<% end %> 
+						<div class="myDiv">
+							<p class="blue-links"> 	<%= post.body %> </p>
+							<p class="text-dark myText"><%= distance_of_time_in_words(post.created_at, Time.now.to_s) %>   </p>
+
+							<% if user_signed_in? && post.user.id == current_user.id %>
+							<%= link_to 'Delete', post_path(post), method: :delete %>  
+							<%= link_to 'Edit', edit_post_path(post) %> 
+							<% end %> 
+							
+						</div>  <br>  <hr>
+						
+				<% end %> 
+			<% end %>
+
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+

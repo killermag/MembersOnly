@@ -7,11 +7,110 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2&display=swap" rel="stylesheet"> 
   </head>
 
   <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>        
+
+    <style>
+      nav-link {
+        color: black;
+      }
+
+      .myLink {
+        color: white;
+        font-size: 20px;
+      }
+
+      .page-footer {
+        height: 300px;
+      }
+
+      .myFoot {
+       position: relative;
+
+       top: 40%;
+       left: 40%;
+        
+      }
+
+      .notice {
+
+      }
+
+      .alert-success {
+        background-color: rgba(1,174 ,42 ,68% );
+      }
+
+
+
+      
+    </style>
+
+  <nav class="navbar navbar-expand navbar-light bg-light">
+      <div class="container">
+
+      
+      <a href="/" class="navbar-brand">Member's Only</a>
+
+      
+      <div class="navbar-nav ml-auto">
+        
+        <% if user_signed_in? %> 
+        <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'btn btn-warning nav-item nav-link mr-2' %> 
+
+        <% else %> 
+        <%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-warning nav-item nav-link mr-2' %> 
+
+
+        <%= link_to 'Sign in', new_user_session_path,  class: 'btn btn-secondary nav-item nav-link '  %> 
+
+        <% end %> 
+      </div>
+    </div>
+    
+  </nav>
+
+
+
+
+
+
+  
+  <!-- <footer><%= link_to 'About', class: 'blue-links' %></footer>  -->
+    
+
+
+
+  
+  <div class="container-fluid coin">
+    <div class="row">
+      <div class="col alert-success" id="fadethis">
+        <p class="notice alert-header text-center"><%= notice %></p>
+      </div>
+    </div>
+  </div>
+ 
+  <p class="alert"><%= alert %></p>     
+     
+
+
     <%= yield %>
+
+    <!--<footer class="page-footer" id="myFooter">
+      <%= link_to image_tag("Git7.png", size: "35x35") ,'https://github.com', target: :_blank %>   
+    </footer>-->
+
+      
+      
+        
+
+    
+  <script>
+     $(".container" ).fadeOut(3000);
+  </script>
+    
   </body>
 </html>
+
+

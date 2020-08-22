@@ -16,3 +16,41 @@
 
 
  @import "bootstrap";
+
+
+ #brand {
+  font-size: 1000px;
+}
+
+:hover a {
+  text-decoration: none;
+}
+
+
+
+
+#myFooter {
+	background: blue;
+
+}
+
+body {
+	background-color: white;
+}
+
+.blue-links {
+	color: black;
+	
+}
+
+#myBtn {
+	position: relative; 
+	top: 10px;
+}
+
+#myLog {
+	position: relative;
+	top: 16px;
+	font-weight: bold;
+	left: 10px;
+}
